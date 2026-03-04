@@ -12,7 +12,7 @@ import {
   Assessment, HistoryItem, LUCKY_QUERIES, searchAssessments
 } from './data';
 
-// ─── Global Declarations ────────────────────────────────────────────
+// Global Declarations 
 declare global {
   interface Window {
     SpeechRecognition: any;
@@ -25,7 +25,7 @@ type Page = 'home' | 'results';
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/recommend";
 
-// ─── SHL Logo ───────────────────────────────────────────────────────
+//  SHL Logo 
 function SHLLogo({ theme, size = 'lg', onClick }: { theme: Theme; size?: 'lg' | 'sm'; onClick?: () => void }) {
   const isLg = size === 'lg';
   return (
@@ -46,7 +46,7 @@ function SHLLogo({ theme, size = 'lg', onClick }: { theme: Theme; size?: 'lg' | 
     </button>
   );
 }
-// ─── Search Input Bar ───────────────────────────────────────────────
+//  Search Input Bar 
 function SearchInput({
   theme, query, setQuery, onSearch, onVoice, onCamera,
   isListening, autoFocus, compact
@@ -116,7 +116,7 @@ function SearchInput({
   );
 }
 
-// ─── Voice Listening Overlay ────────────────────────────────────────
+//  Voice Listening Overlay 
 function VoiceOverlay({ theme, onClose, transcript }: { theme: Theme; onClose: () => void; transcript: string }) {
   const isDark = theme === 'dark';
   return (
@@ -145,7 +145,7 @@ function VoiceOverlay({ theme, onClose, transcript }: { theme: Theme; onClose: (
   );
 }
 
-// ─── Image Upload Modal ─────────────────────────────────────────────
+//  Image Upload Modal
 function ImageUploadModal({ theme, onClose, onUpload }: {
   theme: Theme; onClose: () => void; onUpload: (text: string) => void;
 }) {
@@ -247,7 +247,7 @@ function ImageUploadModal({ theme, onClose, onUpload }: {
   );
 }
 
-// ─── History Panel ──────────────────────────────────────────────────
+//  History Panel 
 function HistoryPanel({ theme, history, onClose, onSelect, onClear, onDelete }: {
   theme: Theme; history: HistoryItem[];
   onClose: () => void; onSelect: (item: HistoryItem) => void;
@@ -371,7 +371,7 @@ function HistoryPanel({ theme, history, onClose, onSelect, onClear, onDelete }: 
   );
 }
 
-// ─── About Modal ────────────────────────────────────────────────────
+//  About Modal 
 function AboutModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
   const isDark = theme === 'dark';
   const sections = [
@@ -464,7 +464,7 @@ function AboutModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
   );
 }
 
-// ─── Developer Profile Modal ────────────────────────────────────────
+//  Developer Profile Modal 
 function DeveloperModal({ theme, onClose }: { theme: Theme; onClose: () => void }) {
   const isDark = theme === 'dark';
   const skills = [
@@ -576,7 +576,7 @@ function DeveloperModal({ theme, onClose }: { theme: Theme; onClose: () => void 
   );
 }
 
-// ─── Apps Grid Menu ─────────────────────────────────────────────────
+//  Apps Grid  
 function AppsMenu({ theme, onClose, onAbout, onDeveloper }: {
   theme: Theme; onClose: () => void; onAbout: () => void; onDeveloper: () => void;
 }) {
@@ -615,7 +615,7 @@ function AppsMenu({ theme, onClose, onAbout, onDeveloper }: {
   );
 }
 
-// ─── Profile Menu ───────────────────────────────────────────────────
+//  Profile Menu 
 function ProfileMenu({ theme, onClose }: { theme: Theme; onClose: () => void }) {
   const isDark = theme === 'dark';
   return (
@@ -651,7 +651,7 @@ function ProfileMenu({ theme, onClose }: { theme: Theme; onClose: () => void }) 
   );
 }
 
-// ─── Assessment Card ────────────────────────────────────────────────
+//  Assessment Card 
 function AssessmentCard({ assessment, theme, index }: { assessment: Assessment; theme: Theme; index: number }) {
   const isDark = theme === 'dark';
   const typeColors: Record<string, string> = {
@@ -714,7 +714,7 @@ function AssessmentCard({ assessment, theme, index }: { assessment: Assessment; 
   );
 }
 
-// ─── Loading Skeleton ───────────────────────────────────────────────
+//  Loading Skeleton
 function LoadingSkeleton({ theme }: { theme: Theme }) {
   const isDark = theme === 'dark';
   return (
@@ -737,7 +737,7 @@ function LoadingSkeleton({ theme }: { theme: Theme }) {
   );
 }
 
-// ─── Footer ─────────────────────────────────────────────────────────
+//  Footer 
 function Footer({ theme, onAbout }: { theme: Theme; onAbout: () => void }) {
   const isDark = theme === 'dark';
   return (
@@ -762,11 +762,11 @@ function Footer({ theme, onAbout }: { theme: Theme; onAbout: () => void }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
+
 //  MAIN APP COMPONENT
-// ═══════════════════════════════════════════════════════════════════
+
 export default function App() {
-  // ── State ───────────────────────────────────────
+  //  State 
   const [theme, setTheme] = useState<Theme>(() => (localStorage.getItem('shl-theme') as Theme) || 'dark');
   const [page, setPage] = useState<Page>('home');
   const [query, setQuery] = useState('');
@@ -791,7 +791,7 @@ export default function App() {
   const [isListening, setIsListening] = useState(false);
   const [voiceTranscript, setVoiceTranscript] = useState('');
 
-  // ── Effects ─────────────────────────────────────
+  //  Effects 
   useEffect(() => {
     localStorage.setItem('shl-theme', theme);
     document.body.style.backgroundColor = theme === 'dark' ? '#202124' : '#ffffff';
@@ -818,7 +818,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler);
   }, [isListening]);
 
-  // ── History ─────────────────────────────────────
+  //  History 
   const addToHistory = useCallback((q: string, res: Assessment[]) => {
     setHistory(prev => [{
       id: Date.now().toString(),
@@ -829,10 +829,7 @@ export default function App() {
     }, ...prev].slice(0, 50));
   }, []);
 
-  // ── Search ──────────────────────────────────────
-
-
-
+  // Search 
   const handleSearch = useCallback(async (q?: string) => {
   const sq = (q || query).trim();
   if (!sq) return;
@@ -849,7 +846,6 @@ export default function App() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query: sq }),
-      // Increased from 10s to 30s. LLM generation + FAISS search often takes 12-15s on free tiers.
       signal: AbortSignal.timeout(30000), 
     });
 
@@ -863,7 +859,7 @@ export default function App() {
     // Map strictly to the Appendix 2 JSON format
     const assessments: Assessment[] = data.recommended_assessments || [];
     
-    setResults(assessments); // Set results even if empty, to clear previous state
+    setResults(assessments); 
     
     if (assessments.length > 0) {
       addToHistory(sq, assessments);
@@ -884,7 +880,7 @@ export default function App() {
   
  
 
-  // ── Lucky ───────────────────────────────────────
+  //  Lucky 
   const handleLucky = useCallback(async () => {
     const luckyQuery = LUCKY_QUERIES[Math.floor(Math.random() * LUCKY_QUERIES.length)];
     setQuery(luckyQuery);
@@ -901,11 +897,12 @@ export default function App() {
     setLoading(false);
   }, [addToHistory]);
 
-  // ── Voice ───────────────────────────────────────
+  //  Voice 
   const recognitionRef = useRef<any>(null);
 
   const startVoice = useCallback(() => {
-    // 1. Broaden the check to catch all browser variations (Edge/Chrome/Firefox)
+
+
     const SR = window.SpeechRecognition || 
                window.webkitSpeechRecognition || 
                (window as any).mozSpeechRecognition || 
@@ -949,7 +946,6 @@ export default function App() {
         setIsListening(false);
         recognitionRef.current = null;
         
-        // 2. Add specific error handling so you know exactly what went wrong
         if (e.error === 'not-allowed') {
           alert('Microphone access was denied. Please allow microphone access in your browser settings.');
         } else if (e.error !== 'no-speech') {
@@ -978,13 +974,13 @@ export default function App() {
     if (isListening) stopVoice(); else startVoice();
   }, [isListening, startVoice, stopVoice]);
 
-  // ── Image upload handler ────────────────────────
+  //  Image upload handler
   const handleImageText = useCallback((text: string) => {
     setQuery(text);
     setShowImageUpload(false);
   }, []);
 
-  // ── Go home ─────────────────────────────────────
+  //  Go home 
   const goHome = useCallback(() => {
     setPage('home');
     setResults([]);
@@ -993,7 +989,7 @@ export default function App() {
     setIsLucky(false);
   }, []);
 
-  // ── Select history item ─────────────────────────
+  //  Select history item 
   const selectHistoryItem = useCallback((item: HistoryItem) => {
     setQuery(item.query);
     setSearchQuery(item.query);
@@ -1002,11 +998,11 @@ export default function App() {
     setShowHistory(false);
   }, []);
 
-  // ── Derived ─────────────────────────────────────
+  // Derived 
   const isDark = theme === 'dark';
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
 
-  // ── Render ──────────────────────────────────────
+  //  Render 
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-300 ${isDark ? 'bg-[#202124]' : 'bg-white'}`}>
 
