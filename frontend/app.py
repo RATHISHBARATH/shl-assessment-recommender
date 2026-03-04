@@ -11,10 +11,7 @@ st.set_page_config(
 )
 
 
-
 API_URL = "http://localhost:8000/recommend"
-
-
 
 
 st.title("🎯 SHL Assessment Recommendation Engine")
