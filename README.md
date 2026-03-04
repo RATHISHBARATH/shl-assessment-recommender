@@ -75,7 +75,7 @@ python -m venv .venv
 source .venv/Scripts/activate  # On Windows: .\.venv\Scripts\activate
 
 # Install dependencies
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 
 # Create a .env file and add your Gemini API Key
 echo "GOOGLE_API_KEY=your_gemini_api_key_here" > backend/.env
@@ -177,3 +177,4 @@ python backend/scripts/batch_predict.py
 This script executes the RAG pipeline over the provided queries and outputs a CSV file strictly formatted with `Query` and `Assessment_url` columns.
 
 *Designed and developed by Rathish Barath for the SHL GenAI Assessment.*
+
