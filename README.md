@@ -169,12 +169,13 @@ $$MeanRecall@K = \frac{1}{N} \sum_{i=1}^{N} Recall@K_i$$
 To generate the required CSV predictions over the unlabeled test set:
 
 ```bash
-python backend/scripts/batch_predict.py
+python src/scripts/batch_predict.py
 
 ```
 
 This script executes the RAG pipeline over the provided queries and outputs a CSV file strictly formatted with `Query` and `Assessment_url` columns.
 
 *Designed and developed by Rathish Barath for the SHL GenAI Assessment.*
+
 
 
