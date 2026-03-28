@@ -143,4 +143,3 @@ Full evaluation harness, batch script, and failure-mode notebook: `src/scripts/b
 ---
 
 **Built by [Rathish Barath](https://github.com/RATHISHBARATH)**  
-For Perplexity Research Residency application — demonstrating retrieval reliability and agentic RAG design.
